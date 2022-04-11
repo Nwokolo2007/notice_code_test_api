@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 const noticeRoutes = require('./routes/noticeRoutes');
 const authRoute =  require('./routes/auth');
-const mongoConnect = require('./core/database/database');
 const app = express();
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
