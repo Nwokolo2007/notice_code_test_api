@@ -3,16 +3,13 @@
   "version": "1.0.0",
   "description": "notice server",
   "main": "noticeServer.js",
-  "engines":{
-    "node": "17.8.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon noticeServer.js"
+    "start": "NODE_ENV=production MONGO_USER=notice MONGO_PASSWORD=ciNxnphI6cifMjVc MONGO_DEFAULT_DATABASE=myFirstDatabase node noticeServer.js",
+    "start-server": "node noticeServer.js"
   },
   "author": "Nwokolo Chibuzo",
   "license": "ISC",
-
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",

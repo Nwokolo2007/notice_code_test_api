@@ -7,6 +7,11 @@ const authRoute =  require('./routes/auth');
 const mongoConnect = require('./core/database/database');
 const app = express();
 
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
+  process.env.MONGO_PASSWORD
+}@cluster0.i7iis.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
+
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -30,11 +35,13 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message: message, data: data });
   });
 
-mongoose
-  .connect(
-    'mongodb+srv://notice:ciNxnphI6cifMjVc@cluster0.i7iis.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-  )
+
+  mongoose
+  .connect(MONGODB_URI)
   .then(result => {
-    app.listen(8080);
+      app.listen(process.env.PORT || 3000);
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log(err);
+  });
+ 
