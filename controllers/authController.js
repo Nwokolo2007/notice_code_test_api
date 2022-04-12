@@ -15,7 +15,7 @@ function createNewUser(req) {
           email: req.email,
           password: hashedPw,
         });
-        return user.save();
+         user.save();
       })
       return user;
   } catch (error) {
@@ -45,7 +45,10 @@ exports.login = (req, res, next) => {
         });
         user = createNewUser(newUser); 
       } 
-      
+      if(!user)
+      {
+          return res.status(400).json({"message":"could not create user"});
+      }
       loadedUser = user;
       return bcrypt.compare(password, user.password);
       
