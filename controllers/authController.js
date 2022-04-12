@@ -45,7 +45,7 @@ exports.login = (req, res, next) => {
         });
         user = createNewUser(newUser); 
       } 
-      if(!user)
+      if(user === undefined)
       {
           return res.status(400).json({"message":"could not create user"});
       }
